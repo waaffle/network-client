@@ -1,16 +1,16 @@
 import { User } from "../types";
 import { api } from "./api";
 
-const userApi = api.injectEndpoints({
-    endpoints: (build) => ({
-        login: build.mutation<{ token: string }, { email: string, password: string }>({
+export const userApi = api.injectEndpoints({
+    endpoints: (builder) => ({
+        login: builder.mutation<{ token: string }, { email: string, password: string }>({
             query: (userData) => ({
                 url: '/login',
                 method: 'POST',
                 body: userData
             })
         }),
-        register: build.mutation<{ name: string, email: string, password: string },
+        register: builder.mutation<{ name: string, email: string, password: string },
             { name: string, email: string, password: string }>({
                 query: (userData) => ({
                     url: '/register',
@@ -18,19 +18,19 @@ const userApi = api.injectEndpoints({
                     body: userData
                 })
             }),
-        getUserById: build.query<User, string>({
+        getUserById: builder.query<User, string>({
             query: (id) => ({
                 url: `/users/${id}`,
                 method: 'GET',
             })
         }),
-        current: build.query<User, void>({
+        current: builder.query<User, void>({
             query: () => ({
                 url: '/current',
                 method: 'GET'
             })
         }),
-        updateUser: build.mutation<User, { userData: FormData, id: string }>({
+        updateUser: builder.mutation<User, { userData: FormData, id: string }>({
             query: ({ userData, id }) => ({
                 url: `/users/${id}`,
                 method: 'PUT',
