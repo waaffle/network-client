@@ -7,17 +7,46 @@ import "./index.css"
 import { NextUIProvider } from "@nextui-org/react"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import { ThemeProvider } from "./components/theme-provider"
+import { Layout } from "./components/layout"
+import { Auth } from "./pages/auth"
+import { Following } from "./pages/following"
+import { Followers } from "./pages/followers"
+import { Posts } from "./pages/posts"
+import { CurrentPost } from "./pages/current-post"
+import { UserProfile } from "./pages/user-profile"
 
 const container = document.getElementById("root")
 
 const router = createBrowserRouter([
   {
-    path: "/auth",
-    element: <h1>Auth</h1>,
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "",
+        element: <Posts />,
+      },
+      {
+        path: "posts/:id",
+        element: <CurrentPost />,
+      },
+      {
+        path: "users/:id",
+        element: <UserProfile />,
+      },
+      {
+        path: "following",
+        element: <Following />,
+      },
+      {
+        path: "followers",
+        element: <Followers />,
+      },
+    ],
   },
   {
-    path: "/",
-    element: <h1>Layout</h1>,
+    path: "/auth",
+    element: <Auth />,
   },
 ])
 
@@ -26,11 +55,10 @@ if (container) {
 
   root.render(
     <React.StrictMode>
-      <RouterProvider router={router} />
       <Provider store={store}>
         <NextUIProvider>
           <ThemeProvider>
-            <App />
+            <RouterProvider router={router} />
           </ThemeProvider>
         </NextUIProvider>
       </Provider>

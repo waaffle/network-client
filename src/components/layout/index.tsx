@@ -5,7 +5,7 @@ import { Container } from "../container"
 import { Navbar } from "../navbar/index"
 import { Outlet } from "react-router-dom"
 
-export const Layout = ({ children }: { children: ReactNode }) => {
+export const Layout = () => {
   return (
     <div>
       <Header />
@@ -17,7 +17,6 @@ export const Layout = ({ children }: { children: ReactNode }) => {
           <Outlet />
         </div>
       </Container>
-      <Footer />
     </div>
   )
 }
