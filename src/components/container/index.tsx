@@ -1,9 +1,9 @@
-import React from "react"
+import React, { FC, ReactElement } from "react"
 
 type Props = {
-  children: React.ReactElement[] | React.ReactElement
+  children: ReactElement[] | ReactElement
 }
 
-export const Container: React.FC<Props> = ({ children }) => {
+export const Container: FC<Props> = ({ children }) => {
   return <div className="flex max-w-screen-xl mx-auto mt-10">{children}</div>
 }

@@ -1,11 +1,12 @@
-import {Button, ButtonGroup} from "@nextui-org/button";
+import { Button, ButtonGroup } from "@nextui-org/button"
+import { Layout } from "./components/layout"
 
 const App = () => {
   return (
-    <div >
-     <Button color="primary">
-      Button
-    </Button>
+    <div>
+      <Layout>
+        <Button color="primary">Button</Button>
+      </Layout>
     </div>
   )
 }
