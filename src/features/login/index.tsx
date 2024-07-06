@@ -8,6 +8,7 @@ import {
 } from "../../app/services/userApi"
 import { useNavigate } from "react-router-dom"
 import { hasErrorField } from "../../utils/has-error-field"
+import { ErrorMessage } from "../../components/error-message"
 
 type Login = {
   email: string
@@ -66,6 +67,7 @@ export const Login: FC<Props> = ({ setSelected }) => {
         label="Пароль"
         placeholder="Введите пароль"
       />
+      <ErrorMessage error={error} />
       <p className="text-center text-small">
         Ещё нет аккаунта?{" "}
         <Link

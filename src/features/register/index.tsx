@@ -8,6 +8,7 @@ import {
 } from "../../app/services/userApi"
 import { Input } from "../../components/input"
 import { hasErrorField } from "../../utils/has-error-field"
+import { ErrorMessage } from "../../components/error-message"
 
 type Register = {
   name: string
@@ -73,6 +74,7 @@ export const Register: FC<Props> = ({ setSelected }) => {
         label="Пароль"
         placeholder="Введите пароль"
       />
+      <ErrorMessage error={error} />
       <p className="text-center text-small">
         Уже есть аккаунт?{" "}
         <Link size="sm" onPress={() => setSelected("login")}>

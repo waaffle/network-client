@@ -12,7 +12,7 @@ export const Auth = () => {
 
   return (
     <div className="flex flex-col w-full items-center justify-center h-screen ">
-      <Card className="max-w-full w-[340px] h-[400px]">
+      <Card className="max-w-full w-[340px] h-[450px]">
         <CardBody className="overflow-hidden">
           <Tabs
             fullWidth
