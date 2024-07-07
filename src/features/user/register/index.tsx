@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom"
 import {
   useLazyCurrentQuery,
   useRegisterMutation,
-} from "../../app/services/userApi"
-import { Input } from "../../components/input"
-import { hasErrorField } from "../../utils/has-error-field"
-import { ErrorMessage } from "../../components/error-message"
+} from "../../../app/services/userApi"
+import { Input } from "../../../components/input"
+import { hasErrorField } from "../../../utils/has-error-field"
+import { ErrorMessage } from "../../../components/error-message"
 
 type Register = {
   name: string

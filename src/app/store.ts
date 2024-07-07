@@ -1,10 +1,12 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit"
 import { configureStore } from "@reduxjs/toolkit"
 import { api } from "./services/api"
+import userSlice from "../features/user/userSlice"
 
 export const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
+    user: userSlice
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),

@@ -1,14 +1,14 @@
 import { Button, Link } from "@nextui-org/react"
 import { FC, useState } from "react"
-import { SubmitHandler, useForm } from "react-hook-form"
-import { Input } from "../../components/input"
+import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 import {
   useLazyCurrentQuery,
   useLoginMutation,
-} from "../../app/services/userApi"
-import { useNavigate } from "react-router-dom"
-import { hasErrorField } from "../../utils/has-error-field"
-import { ErrorMessage } from "../../components/error-message"
+} from "../../../app/services/userApi"
+import { ErrorMessage } from "../../../components/error-message"
+import { Input } from "../../../components/input"
+import { hasErrorField } from "../../../utils/has-error-field"
 
 type Login = {
   email: string
@@ -39,6 +39,8 @@ export const Login: FC<Props> = ({ setSelected }) => {
   const onSubmit = async (data: Login) => {
     try {
       await login(data).unwrap()
+      await getCurrentUser().unwrap()
+      navigate("/")
     } catch (error) {
       if (hasErrorField(error)) {
         setError(error.data.error)
