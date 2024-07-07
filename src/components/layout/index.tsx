@@ -1,9 +1,7 @@
-import { ReactNode } from "react"
-import { Header } from "../header"
-import { Footer } from "../footer"
-import { Container } from "../container"
-import { Navbar } from "../navbar/index"
 import { Outlet } from "react-router-dom"
+import { Container } from "../container"
+import { Header } from "../header"
+import { Navbar } from "../navbar/index"
 
 export const Layout = () => {
   return (
