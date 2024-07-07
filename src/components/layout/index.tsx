@@ -1,10 +1,12 @@
+import { Card, CardBody } from "@nextui-org/react"
+import { useEffect } from "react"
+import { useSelector } from "react-redux"
 import { Outlet, useNavigate } from "react-router-dom"
+import { selectIsAuthorized, selectUser } from "../../features/user/userSlice"
 import { Container } from "../container"
 import { Header } from "../header"
 import { Navbar } from "../navbar/index"
-import { useSelector } from "react-redux"
-import { selectIsAuthorized, selectUser } from "../../features/user/userSlice"
-import { useEffect } from "react"
+import { Profile } from "../profile"
 
 export const Layout = () => {
   const isAuthorized = useSelector(selectIsAuthorized)
@@ -25,6 +27,7 @@ export const Layout = () => {
         <div className="flex-1 p-4">
           <Outlet />
         </div>
+        <div className="p-4">{!user && <Profile />}</div>
       </Container>
     </div>
   )
