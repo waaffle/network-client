@@ -1,3 +1,9 @@
+import { CreatePost } from "../../components/create-post"
+
 export const Posts = () => {
-  return <div>Posts</div>
+  return (
+    <div>
+      <CreatePost />
+    </div>
+  )
 }
