@@ -29,7 +29,7 @@ export const CreatePost = () => {
     }
   })
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="mb-3">
       <Controller
         name="post"
         control={control}

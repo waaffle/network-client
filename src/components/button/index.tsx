@@ -11,8 +11,16 @@ type Props = {
     | "warning"
     | "danger"
     | undefined
-  variant?: string
-  size?: string
+  variant?:
+    | "flat"
+    | "shadow"
+    | "light"
+    | "solid"
+    | "bordered"
+    | "faded"
+    | "ghost"
+    | undefined
+  size?: "sm" | "lg" | "md" | undefined
   icon?: ReactNode
   className?: string
   fullWidth?: boolean
@@ -24,14 +32,16 @@ export const Button: FC<Props> = ({
   className,
   color,
   icon,
+  variant = "light",
+  size = "lg",
   fullWidth,
   type,
 }) => {
   return (
     <ButtonNextUI
       color={color}
-      variant="light"
-      size="lg"
+      variant={variant}
+      size={size}
       startContent={icon}
       className={className}
       fullWidth={fullWidth}
