@@ -1,5 +1,4 @@
 import { useGetAllPostsQuery } from "../../app/services/postsApi"
-import { Post } from "../../app/types"
 import { CreatePost } from "../../components/create-post"
 import { PostCard } from "../../components/post-card"
 
@@ -8,23 +7,38 @@ export const Posts = () => {
 
   return (
     <div>
-      <CreatePost />
-
-      {posts?.map((post: Post) => {
-        const { authorId, author, content, createdAt, likes, comments, id } =
-          post
-        return (
-          <PostCard
-            key={id}
-            authorId={authorId}
-            author={author}
-            content={content}
-            description={createdAt}
-            likes={likes}
-            comments={comments}
-          ></PostCard>
-        )
-      })}
+      <div className="mb-10 w-full">
+        <CreatePost />
+      </div>
+      {!!posts?.length &&
+        posts?.map(
+          ({
+            content,
+            author,
+            authorId,
+            id,
+            comments,
+            likes,
+            likedByUser,
+            createdAt,
+          }) => {
+            return (
+              <PostCard
+                key={id}
+                avatarUrl={author.avatarUrl ?? ""}
+                content={content}
+                name={author?.name ?? ""}
+                likesCount={likes?.length}
+                commentsCount={comments?.length}
+                authorId={authorId}
+                id={id}
+                likedByUser={likedByUser}
+                createdAt={createdAt}
+                cardFor="post"
+              ></PostCard>
+            )
+          },
+        )}
     </div>
   )
 }

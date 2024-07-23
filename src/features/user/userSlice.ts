@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { userApi } from "../../app/services/userApi";
 import { User } from "../../app/types";
-import { select } from "@nextui-org/react";
 import { RootState } from "../../app/store";
 
 interface UserState {

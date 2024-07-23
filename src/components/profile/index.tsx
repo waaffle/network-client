@@ -15,10 +15,11 @@ export const Profile = () => {
     <Card className="py-4">
       <CardBody>
         <Image
+          alt="Card profile"
           className="text-center w-[250px] object-cover rounded-xl"
           src={`${BASE_URL}/${avatarUrl}`}
         />
-        <div className="text-center   flex flex-col">
+        <div className="text-center flex flex-col">
           <Link
             href={`/users/${id}`}
             className="font-bold text-xl self-center gap-2 mb-1 cursor-pointer"
