@@ -29,6 +29,7 @@ import { MetaInfo } from "../meta-info"
 import { Typography } from "../typography"
 import { FaRegComment } from "react-icons/fa"
 import { ErrorMessage } from "../error-message"
+import { hasErrorField } from "../../utils/has-error-field"
 
 type Props = {
   avatarUrl: string
@@ -44,7 +45,7 @@ type Props = {
   likedByUser?: boolean
 }
 
-export const PostCard: FC<Props> = ({
+export const MyCard: FC<Props> = ({
   avatarUrl = "",
   name = "",
   authorId = "",
@@ -67,6 +68,35 @@ export const PostCard: FC<Props> = ({
   const currentUser = useAppSelector(selectCurrent)
   const navigate = useNavigate()
 
+  const handleClick = async () => {
+    try {
+      switch (cardFor) {
+        case "post": {
+          await deletePost(id).unwrap()
+          await getAllPosts().unwrap()
+          break
+        }
+        case "current-post": {
+          await deletePost(id).unwrap()
+          navigate("/")
+          break
+        }
+        case "comment": {
+          await deleteComment(commentId).unwrap()
+          await getAllPosts().unwrap()
+          break
+        }
+        default: {
+          throw new Error("Некорректный аргумент cardFor")
+        }
+      }
+    } catch (error) {
+      if (hasErrorField(error)) {
+        setError(error.data.error)
+      } else setError(error as string)
+    }
+  }
+
   return (
     <Card className="mb-3" fullWidth>
       <CardHeader className="justify-between">
@@ -85,7 +115,7 @@ export const PostCard: FC<Props> = ({
             {deletePostStatus.isLoading || deleteCommentStatus.isLoading ? (
               <Spinner />
             ) : (
-              <div className="cursor-pointer">
+              <div className="cursor-pointer" onClick={handleClick}>
                 <RiDeleteBinLine />
               </div>
             )}

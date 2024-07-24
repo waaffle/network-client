@@ -1,6 +1,6 @@
 import { useGetAllPostsQuery } from "../../app/services/postsApi"
 import { CreatePost } from "../../components/create-post"
-import { PostCard } from "../../components/post-card"
+import { MyCard } from "../../components/my-card"
 
 export const Posts = () => {
   const { data: posts } = useGetAllPostsQuery()
@@ -23,7 +23,7 @@ export const Posts = () => {
             createdAt,
           }) => {
             return (
-              <PostCard
+              <MyCard
                 key={id}
                 avatarUrl={author.avatarUrl ?? ""}
                 content={content}
@@ -35,7 +35,7 @@ export const Posts = () => {
                 likedByUser={likedByUser}
                 createdAt={createdAt}
                 cardFor="post"
-              ></PostCard>
+              ></MyCard>
             )
           },
         )}
