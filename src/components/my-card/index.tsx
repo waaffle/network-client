@@ -68,28 +68,60 @@ export const MyCard: FC<Props> = ({
   const currentUser = useAppSelector(selectCurrent)
   const navigate = useNavigate()
 
+  const refetchPosts = async () => {
+    switch (cardFor) {
+      case "post":
+        await getAllPosts().unwrap()
+        break
+      case "current-post":
+        await getPostById(id).unwrap()
+        break
+      case "comment":
+        await getPostById(id).unwrap()
+        break
+      default:
+        throw new Error("Некорректный аргумент cardFor")
+    }
+  }
+
   const handleClick = async () => {
     try {
       switch (cardFor) {
         case "post": {
           await deletePost(id).unwrap()
-          await getAllPosts().unwrap()
+          await refetchPosts()
           break
         }
         case "current-post": {
           await deletePost(id).unwrap()
+          await refetchPosts()
           navigate("/")
           break
         }
         case "comment": {
           await deleteComment(commentId).unwrap()
-          await getAllPosts().unwrap()
+          await refetchPosts()
           break
         }
         default: {
           throw new Error("Некорректный аргумент cardFor")
         }
       }
+    } catch (error) {
+      if (hasErrorField(error)) {
+        setError(error.data.error)
+      } else setError(error as string)
+    }
+  }
+
+  const handleLike = async () => {
+    try {
+      {
+        likedByUser
+          ? await unLikePost(id).unwrap()
+          : await likePost({ postId: id }).unwrap()
+      }
+      await refetchPosts()
     } catch (error) {
       if (hasErrorField(error)) {
         setError(error.data.error)
@@ -128,7 +160,7 @@ export const MyCard: FC<Props> = ({
       {cardFor !== "comment" && (
         <CardFooter className="gap-3">
           <div className="flex gap-5 items-center">
-            <div>
+            <div onClick={handleLike}>
               <MetaInfo
                 count={likesCount}
                 Icon={likedByUser ? FcLike : MdOutlineFavoriteBorder}
