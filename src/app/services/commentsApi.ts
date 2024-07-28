@@ -3,7 +3,7 @@ import { api } from "./api";
 
 export const commentsApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        createComment: builder.mutation<Comment, Partial<Comment>>({
+        createComment: builder.mutation<Comment, { content: string, postId: string }>({
             query: (commentData) => ({
                 url: '/comments',
                 method: 'POST',

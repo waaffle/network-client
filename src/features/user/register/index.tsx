@@ -74,7 +74,7 @@ export const Register: FC<Props> = ({ setSelected }) => {
         label="Пароль"
         placeholder="Введите пароль"
       />
-      <ErrorMessage error={error} />
+      {!!errors && <ErrorMessage error={error} />}
       <p className="text-center text-small">
         Уже есть аккаунт?{" "}
         <Link size="sm" onPress={() => setSelected("login")}>

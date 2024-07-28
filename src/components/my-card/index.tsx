@@ -84,7 +84,7 @@ export const MyCard: FC<Props> = ({
     }
   }
 
-  const handleClick = async () => {
+  const handleDelete = async () => {
     try {
       switch (cardFor) {
         case "post": {
@@ -147,7 +147,7 @@ export const MyCard: FC<Props> = ({
             {deletePostStatus.isLoading || deleteCommentStatus.isLoading ? (
               <Spinner />
             ) : (
-              <div className="cursor-pointer" onClick={handleClick}>
+              <div className="cursor-pointer" onClick={handleDelete}>
                 <RiDeleteBinLine />
               </div>
             )}

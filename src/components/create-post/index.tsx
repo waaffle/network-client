@@ -31,7 +31,7 @@ export const CreatePost = () => {
     } catch (error) {
       if (hasErrorField(error)) {
         setError(error.data.error)
-      }
+      } else setError(error as string)
     }
   })
   return (
@@ -53,7 +53,7 @@ export const CreatePost = () => {
           />
         )}
       ></Controller>
-      <ErrorMessage error={error} />
+      {!!errors && <ErrorMessage error={error} />}
       <Button type="submit" color="success" isLoading={isLoading}>
         Создать пост
       </Button>

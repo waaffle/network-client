@@ -69,7 +69,7 @@ export const Login: FC<Props> = ({ setSelected }) => {
         label="Пароль"
         placeholder="Введите пароль"
       />
-      <ErrorMessage error={error} />
+      {!!errors && <ErrorMessage error={error} />}
       <p className="text-center text-small">
         Ещё нет аккаунта?{" "}
         <Link
