@@ -132,7 +132,7 @@ export const MyCard: FC<Props> = ({
   return (
     <Card className="mb-3" fullWidth>
       <CardHeader className="justify-between">
-        <Link to={`/user/${authorId}`}>
+        <Link to={`/users/${authorId}`}>
           <NextUser
             name={name}
             className="leading-none"

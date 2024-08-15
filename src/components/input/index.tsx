@@ -8,9 +8,11 @@ type Props = {
   label: string
   placeholder?: string
   type?: string
+  autoFocus?: boolean
   required?: string
   endContent?: JSX.Element
   pattern?: { value: RegExp; message: string } | undefined
+  className?: string
 }
 
 export const Input: React.FC<Props> = ({
@@ -19,9 +21,11 @@ export const Input: React.FC<Props> = ({
   placeholder,
   type,
   control,
+  autoFocus,
   required = "",
   endContent,
   pattern,
+  className,
 }) => {
   const {
     field,
@@ -39,6 +43,8 @@ export const Input: React.FC<Props> = ({
       label={label}
       type={type}
       placeholder={placeholder}
+      autoFocus={autoFocus}
+      className={className}
       value={field.value}
       name={field.name}
       isInvalid={invalid}
