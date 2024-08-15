@@ -34,8 +34,8 @@ import { hasErrorField } from "../../utils/has-error-field"
 type Props = {
   avatarUrl: string
   name: string
-  authorId: string
-  content: string
+  authorId?: string
+  content?: string
   createdAt: Date
   commentId?: string
   likesCount?: number

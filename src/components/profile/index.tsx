@@ -5,6 +5,7 @@ import { BASE_URL } from "../../constants"
 import { FaRegUserCircle } from "react-icons/fa"
 import { MdAlternateEmail } from "react-icons/md"
 import { useAppSelector } from "../../app/hooks"
+import { GrFormNextLink } from "react-icons/gr"
 
 export const Profile = () => {
   const current = useAppSelector(selectCurrent)
@@ -12,25 +13,22 @@ export const Profile = () => {
 
   const { name, email, avatarUrl, id } = current
   return (
-    <Card className="py-4">
-      <CardBody>
-        <Image
-          alt="Card profile"
-          className="text-center w-[250px] object-cover rounded-xl"
-          src={`${BASE_URL}/${avatarUrl}`}
-        />
-        <div className="text-center flex flex-col">
-          <Link
-            href={`/users/${id}`}
-            className="font-bold text-xl self-center gap-2 mb-1 cursor-pointer"
-            showAnchorIcon
-            anchorIcon={<FaRegUserCircle />}
-          >
+    <Link href={`/users/${id}`} className="font-bold text-xl cursor-pointer">
+      <Card className="py-4">
+        <CardBody className="gap-3 flex items-center flex-col">
+          <Image
+            alt="Card profile"
+            className="text-center w-[250px] object-cover rounded-xl"
+            src={`${BASE_URL}/${avatarUrl}`}
+          />
+          <div className="flex gap-2 items-center ">
             {name}
-          </Link>
+            <GrFormNextLink />
+          </div>
+
           <small className="text-default-500 text-sm">{email}</small>
-        </div>
-      </CardBody>
-    </Card>
+        </CardBody>
+      </Card>
+    </Link>
   )
 }
