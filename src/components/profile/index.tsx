@@ -18,7 +18,7 @@ export const Profile = () => {
         <CardBody className="gap-3 flex items-center flex-col">
           <Image
             alt="Card profile"
-            className="text-center w-[250px] object-cover rounded-xl"
+            className="text-center w-[250px] h-[250px] dark:border-gray-200 border-3 border-slate-800 mx-3 object-left-top object-cover rounded-xl"
             src={`${BASE_URL}/${avatarUrl}`}
           />
           <div className="flex gap-2 items-center ">

@@ -1,14 +1,10 @@
 import { Button, Link } from "@nextui-org/react"
 import { FC, useState } from "react"
 import { useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
-import {
-  useLazyCurrentQuery,
-  useRegisterMutation,
-} from "../../../app/services/userApi"
+import { useRegisterMutation } from "../../../app/services/userApi"
+import { ErrorMessage } from "../../../components/error-message"
 import { Input } from "../../../components/input"
 import { hasErrorField } from "../../../utils/has-error-field"
-import { ErrorMessage } from "../../../components/error-message"
 
 type Register = {
   name: string
@@ -34,9 +30,7 @@ export const Register: FC<Props> = ({ setSelected }) => {
     },
   })
   const [register, { isLoading }] = useRegisterMutation()
-  const navigate = useNavigate()
   const [error, setError] = useState("")
-  const [getCurrentUser] = useLazyCurrentQuery()
 
   const onSubmit = async (data: Register) => {
     try {

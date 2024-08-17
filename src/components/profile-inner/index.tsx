@@ -49,7 +49,7 @@ export const ProfileInner = (data: User) => {
       <CardBody>
         <Image
           alt="Card profile"
-          className="text-center w-[350px]  object-cover rounded-xl mb-10"
+          className="text-center object-cover dark:border-gray-200 border-3 border-slate-800 max-w-[350px] max-h-[350px] rounded-xl mx-3 mb-10"
           src={`${BASE_URL}/${avatarUrl}`}
         />
         <div className="text-center flex flex-col">
@@ -74,7 +74,7 @@ export const ProfileInner = (data: User) => {
               {data?.isFollowing ? "Отписаться" : "Подписаться"}
             </Button>
           ) : (
-            <EditProfile />
+            <EditProfile user={data} />
           )}
         </div>
         <ErrorMessage error={error} />

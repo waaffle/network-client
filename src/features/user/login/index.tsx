@@ -82,7 +82,7 @@ export const Login: FC<Props> = ({ setSelected }) => {
       </p>
       <div className="flex gap-2 justify-end">
         <Button type="submit" fullWidth color="primary" isLoading={isLoading}>
-          Login
+          Войти
         </Button>
       </div>
     </form>

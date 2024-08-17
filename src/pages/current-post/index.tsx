@@ -44,7 +44,7 @@ export const CurrentPost = () => {
       </div>
       {!!comments?.length &&
         comments?.map((comment: Comment) => {
-          const { id, content, userId, user, post } = comment
+          const { id, content, userId, user, post, createdAt } = comment
           return (
             <MyCard
               key={id}
@@ -52,7 +52,7 @@ export const CurrentPost = () => {
               name={user?.name ?? ""}
               authorId={userId}
               content={content}
-              createdAt={post?.createdAt ?? ""}
+              createdAt={createdAt ?? ""}
               cardFor="comment"
               commentId={id}
               id={postId}

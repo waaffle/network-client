@@ -1,29 +1,13 @@
 import { FC, ReactNode } from "react"
-import { Control, useController } from "react-hook-form"
 
 type Props = {
-  name: string
-  control: Control<any>
   text: string
   type: string
-  required?: string
-  data?: string
+  onChange: React.ChangeEventHandler<HTMLInputElement>
+  data?: File | null
   icon?: ReactNode
 }
-export const MyInput: FC<Props> = ({
-  name,
-  control,
-  text,
-  type,
-  data,
-  required,
-  icon,
-}) => {
-  const { field } = useController({
-    name,
-    control,
-    rules: { required },
-  })
+export const MyInput: FC<Props> = ({ text, type, data, onChange, icon }) => {
   return (
     <div>
       <label
@@ -35,7 +19,7 @@ export const MyInput: FC<Props> = ({
           <div className="text-sm">{text}</div>
           {!!data && (
             <div className="text-default-400 text-small">
-              {data.replace("./uploads/", "")}
+              {data.name.replace("/uploads/", "")}
             </div>
           )}
         </div>
@@ -46,10 +30,7 @@ export const MyInput: FC<Props> = ({
         className="block w-full text-sm text-black/0 opacity-0 h-0"
         id={type}
         type={type}
-        value={field.value}
-        name={field.name}
-        onChange={field.onChange}
-        onBlur={field.onBlur}
+        onChange={onChange}
       />
     </div>
   )

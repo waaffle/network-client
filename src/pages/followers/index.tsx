@@ -33,7 +33,7 @@ export const Followers = () => {
     </div>
   ) : (
     <p className="text-3xl text-center border-1 border-red-500 p-5">
-      Подписок нет
+      Подписчиков нет
     </p>
   )
 }
